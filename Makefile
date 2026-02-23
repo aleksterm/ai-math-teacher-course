@@ -18,14 +18,20 @@ DOCX_REFERENCE := templates/reference.docx
 DOCX_REF_FLAG := $(if $(wildcard $(DOCX_REFERENCE)),--reference-doc=$(DOCX_REFERENCE),)
 
 # Optional: provide a PDF engine (xelatex is common if you have TeX installed)
+
 PDF_ENGINE := xelatex
 
-.PHONY: all docx pdf clean check
+.ONESHELL:
+
+.PHONY: all docx pdf clean check sanitize
 
 all: docx pdf
 
 check:
 	@$(PANDOC) --version >/dev/null 2>&1 || (echo "Pandoc is not installed or not on PATH." && exit 1)
+
+sanitize:
+	python3 scripts/sanitize.py
 
 $(OUTDIR):
 	@mkdir -p $(OUTDIR)
