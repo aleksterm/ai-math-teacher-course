@@ -18,7 +18,7 @@ DOCX_REFERENCE := templates/reference.docx
 DOCX_REF_FLAG := $(if $(wildcard $(DOCX_REFERENCE)),--reference-doc=$(DOCX_REFERENCE),)
 
 # Optional: provide a PDF engine (xelatex is common if you have TeX installed)
-# PDF_ENGINE := xelatex
+PDF_ENGINE := xelatex
 
 .PHONY: all docx pdf clean check
 
@@ -44,8 +44,14 @@ $(OUTDIR)/%.pdf: %.md check | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(PANDOC) $< \
 		-o $@ \
+		--pdf-engine=$(PDF_ENGINE) \
 		--number-sections \
-		--toc
+		--toc \
+		--metadata lang=uk-UA \
+		-V mainfont="Times New Roman" \
+		-V monofont="Menlo" \
+		-V fontsize=12pt \
+		-V geometry:margin=2.5cm
 
 # Build all documents separately
 
