@@ -41,6 +41,7 @@ $(OUTDIR)/%.docx: %.md check | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(PANDOC) $< \
 		-o $@ \
+		--resource-path=.:docs:assets \
 		--number-sections \
 		--toc \
 		$(DOCX_REF_FLAG)
@@ -50,11 +51,13 @@ $(OUTDIR)/%.pdf: %.md check | $(OUTDIR)
 	@mkdir -p $(dir $@)
 	$(PANDOC) $< \
 		-o $@ \
+		--resource-path=.:docs:assets \
 		--pdf-engine=$(PDF_ENGINE) \
 		--template=templates/academic.tex \
 		--number-sections \
 		--toc \
-		--metadata lang=uk-UA \
+		--metadata=lang:uk-UA \
+		--metadata=figurePlacement:H
 
 # Build all documents separately
 
