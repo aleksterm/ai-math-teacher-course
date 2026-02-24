@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\bfseries\large}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\bfseries}
+  {\thesubsection}{1em}{}
+
+\usepackage{enumitem}
+\setlist{nosep}
+
+% Pandoc inserts \tightlist for tight lists; define it if not present.
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\usepackage{hyperref}
+
+% --- Styled block quotes (Pandoc blockquote -> LaTeX quote) ---
+\usepackage{xcolor}
+\usepackage{mdframed}
+
+\definecolor{quoteline}{RGB}{150,150,150}
+
+\newmdenv[
+  leftline=true,
+  rightline=false,
+  topline=false,
+  bottomline=false,
+  linewidth=2pt,
+  linecolor=quoteline,
+  skipabove=12pt,
+  skipbelow=12pt,
+  innerleftmargin=12pt,
+  innerrightmargin=4pt,
+  innertopmargin=6pt,
+  innerbottommargin=6pt
+]{pandocquote}
+
+\renewenvironment{quote}{\begin{pandocquote}}{\end{pandocquote}}
+
+\begin{document}
+
+$body$
+
+\end{document}

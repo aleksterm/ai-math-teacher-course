@@ -51,13 +51,10 @@ $(OUTDIR)/%.pdf: %.md check | $(OUTDIR)
 	$(PANDOC) $< \
 		-o $@ \
 		--pdf-engine=$(PDF_ENGINE) \
+		--template=templates/academic.tex \
 		--number-sections \
 		--toc \
 		--metadata lang=uk-UA \
-		-V mainfont="Times New Roman" \
-		-V monofont="Menlo" \
-		-V fontsize=12pt \
-		-V geometry:margin=2.5cm
 
 # Build all documents separately
 
